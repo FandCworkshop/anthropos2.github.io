@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Άνθρωπος 2.0</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #06374d, #041f2a);
+      color: white;
+      padding-top: 90px;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #042f43;
+      border-bottom: 1px solid #0a3d56;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a, .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu-avatar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .menu-icon {
+      width: 25px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    .avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #0e5f7a;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #064057;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #0a3d56;
+    }
+
+    .dropdown a:hover {
+      background: #07516c;
+    }
+
+    .search-bar {
+      padding: 10px 20px;
+      background: #063b51;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+    }
+
+    .avatars {
+      display: flex;
+      padding: 08px 20px;
+      gap: 30px;
+      overflow-x: clip;
+    }
+
+    .avatar {
+      text-align: center;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .card {
+      background: #064057;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .grid .card {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .post-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .user-info span.name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .user-info span.date {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .post-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .reaction-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .reaction-buttons button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .reaction-buttons button:hover {
+      background-color: #555;
+    }
+    .comment-box {
+      margin-top: 15px;
+    }
+    .comment-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">Άνθρωπος 2.0</a>
+    <div class="menu-avatar">
+      <div class="menu-icon">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="avatar">
+        <img src="85.jpg" alt="Avatar" />
+      </div>
+    </div>
+  </header>
+
+ 
+
+</body>
+</html>
+
+  <header>
+    <a href="#" class="logo">ΑΝΘΡΩΠΟΣ 2.0</a>
+
+    <div class="nav-links">
+      <a href="NOUS.html"><img src="NOUSbutton.png" alt="Avatar" /></a>
+      <a href="ΨΥΧΑΓΩΓΙΑ&ΕΝΗΜΕΡΩΣΗ.html"><b>ΨΥΧΑΓΩΓΙΑ & ΕΝΗΜΕΡΩΣΗ</b></a>
+      <a href="ΑΓΟΡΑ.html"><b>ΑΓΟΡΑ</b></a>
+      <a href="ΧΡΗΜΑΤΙΣΤΗΡΙΟ.html"><b>ΧΡΗΜΑΤΙΣΤΗΡΙΟ</b></a>
+      <a href="EDUCATION.html"><b>Εκπαίδευση</b></a>
+      <a href="MASSAGE.html"><img src="ICON/2.png" alt="Avatar" /></a>
+      <a href="MAIL.html"><img src="ICON/1.png" alt="Avatar" /></a>
+
+    </div>
+
+    <div class="menu-avatar">
+      <div class="menu-icon" onclick="toggleDropdown()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="avatar">
+       <a href="PROFIL.html"><img src="85.jpg" 
+       alt="Avatar"></a>
+      </div>
+    </div>
+
+    <div class="dropdown" id="dropdownMenu">
+      <a href="INFO.html">Πληροφορίες</a>
+      <a href="SETTINGS.html">Ρυθμίσεις</a>
+      <a href="ACOUNT.html">Λογαριασμός </a>
+      <a href="NOUS.html">Νοῦς </a>
+      <a href="ABOTUS.html">About us </a>
+      <a href="KIDS.html"><b>Kids Mode</b> </a>    </div>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Αναζήτησμ με τον Νοῦς..." />
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    // Κλείσιμο dropdown όταν γίνεται scroll
+    window.addEventListener("scroll", () => {
+      const menu = document.getElementById("dropdownMenu");
+      if (menu) menu.style.display = "none";
+    });
+  </script>
+
+</body>
+  <div class="avatars">
+    <div class="avatar">
+      <a href="UPLOADSHORTORREEL.html"><img src="Pictures/AVATAR/8.jfif" 
+      alt="Avatar"><div>Upload</div></a>
+     </div>
+   
+   <div class="avatar">
+      <a href="SHORTS&REEL.html"><img src="Pictures/AVATAR/1.jfif" 
+      alt="Avatar"><div>David</div></a>
+     </div>
+     <div class="avatar">
+      <a href="SHORTS&REEL.html"><img src="Pictures/AVATAR/2.png" 
+      alt="Avatar"><div>Becit</div></a>
+     </div>
+     <div class="avatar">
+      <a href="SHORTS&REEL.html"><img src="Pictures/AVATAR/4.jfif" 
+      alt="Avatar"><div>Maria</div></a>
+     </div>
+     <div class="avatar">
+      <a href="SHORTS&REEL.html"><img src="Pictures/AVATAR/6.jfif" 
+      alt="Avatar"><div>Anna</div></a>
+     </div>
+     <div class="avatar">
+      <a href="SHORTS&REEL.html"><img src="Pictures/AVATAR/9.jfif" 
+      alt="Avatar"><div>More...</div></a>
+     </div>
+  </div>
+
+  <section>
+    <!-- Cards όπως πριν -->
+  </section>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.addEventListener('click', function(e) {
+      const menu = document.getElementById('dropdownMenu');
+      if (!e.target.closest('.menu-avatar')) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+
+
+  
+
+  <section>
+
+    <div class="card">
+      <h2><a href="ΨΥΧΑΓΩΓΙΑ&ΕΝΗΜΕΡΩΣΗ.html">Videos, Movies & More</a></h2>
+      <img src="Pictures/4.png" alt="Main">
+      <p><b>Ανακαλύψτε Ταινίες, Βίντεο, Reels, Stories και Lives</b></p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <img src="Pictures/13.jfif" alt="Marketplace">
+        <h3><a href="ΑΓΟΡΑ.html">Ανακαλύψτε προϊόντα και καταστήματα</a></h3>
+      </div>
+      
+      <div class="card">
+        <h3><a href="ΧΡΗΜΑΤΙΣΤΗΡΙΟ.html">Χρηματιστήριο</a></h3>
+        <img src="Pictures/15.jfif" alt="Market">
+        <p>Dollar: <span class="up">4,590.15</span></p>
+        <p>Bitcoin: <span class="down">-240.57</span></p>
+      </div>
+    </div>
+
+    <section>
+      <div class="post-card">
+  <div class="post-header">
+    <img class="avatar" src="https://i.pravatar.cc/48?u=avatar1" alt="avatar" />
+    <div class="user-info">
+      <span class="name">Joanna Spairs</span>
+      <span class="date">19 Απριλίου 2025</span>
+    </div>
+  </div>
+
+  <p>Είμαι ενθουσιασμένος για την πρώτη μου ανάρτηση στην πλατφόρμα Άνθρωπος 2.0!</p>
+
+  <img class="post-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="post" />
+
+  <div class="reaction-buttons">
+    <button>Μου αρέσει</button>
+    <button>Αγάπη</button>
+    <button>Χαχα</button>
+    <button>Ουάου</button>
+    <button>Λύπη</button>
+    <button>Θυμός</button>
+    <button>Κοινοποίηση</button>
+  </div>
+
+  <div class="comment-box">
+    <input type="text" placeholder="Γράψε ένα σχόλιο..." />
+  </div>
+</div>
+</body>
+      </section>
+      
+    </div>
+  </div>
+</section>
+
+    <section>
+      <div class="post-card">
+  <div class="post-header">
+    <img class="avatar" src="Pictures/AVATAR/3.jfif" alt="avatar" />
+    <div class="user-info">
+      <span class="name">Mark Gerb</span>
+      <span class="date">19 Απριλίου 2025</span>
+    </div>
+  </div>
+  
+  <p>Τροφή για σκέψη: Δεν πιστεύεται ότι τα χρήματα, οι εργατοώρες, τα εργοστάσια παραγωγής, η ανάπτυξη τεχνολογιών που θυσιάζονται για τους πολέμους στον πλανήτη αν αξιοποιούνταν σωστά ο άνθρωπος δεν θα ήταν ήδη πολύ πλανητικό όν?   </p>
+  
+  <img class="post-image" src="Pictures/18.jfif" alt="post" />
+  
+  <div class="reaction-buttons">
+    <button>Μου αρέσει</button>
+    <button>Αγάπη</button>
+    <button>Χαχα</button>
+    <button>Ουάου</button>
+    <button>Λύπη</button>
+    <button>Θυμός</button>
+    <button>Κοινοποίηση</button>
+  </div>
+  
+  <div class="comment-box">
+    <input type="text" placeholder="Γράψε ένα σχόλιο..." />
+  </div>
+  </div>
+  </body>
+      </section>
+      
+    </div>
+  </div>
+  </section>
+
+
+
+
+
+<section>
+
+
+  <section>
+        <div class="post-card">
+    <div class="post-header">
+      <img class="avatar" src="Pictures/AVATAR/14.jfif" alt="avatar" />
+      <div class="user-info">
+        <span class="name">Άνθρωπος 2,0</span>
+        <span class="date">19 Απριλίου 2025</span>
+      </div>
+    </div>
+
+    <p>Καλώς ήρθατε στην πλατφόρμα Άνθρωπος 2.0!</p>
+
+    <img class="post-image" src="Pictures/4.png" alt="post" />
+
+    <div class="reaction-buttons">
+      <button>Μου αρέσει</button>
+      <button>Αγάπη</button>
+      <button>Χαχα</button>
+      <button>Ουάου</button>
+      <button>Λύπη</button>
+      <button>Θυμός</button>
+      <button>Κοινοποίηση</button>
+    </div>
+
+    <div class="comment-box">
+      <input type="text" placeholder="Γράψε ένα σχόλιο..." />
+    </div>
+  </div>
+</body>
+        </section>
+        
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Άνθρωπος 2.0 — Δημιουργήθηκε με όραμα από τον Χρίστο| Όλοι οι χρήστες είναι σημαντικοί.
+  </footer>
+
+</body>
+</html>
