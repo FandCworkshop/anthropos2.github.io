@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ΑΓΟΡΑ | Άνθρωπος 2.0</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #06374d, #041f2a);
+      color: white;
+      padding-top: 90px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      background-color: #042f43;
+    }
+
+    .tab-button {
+      padding: 10px 15px;
+      background-color: #064057;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .tab-button.active {
+      background-color: #2fd0c9;
+      color: black;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background: #064057;
+      padding: 15px;
+      border-radius: 10px;
+      width: 200px;
+    }
+
+    aside {
+      background-color: #042f43;
+      padding: 10px;
+      margin: 20px auto;
+      width: 90%;
+      border-radius: 10px;
+      display: none;
+    }
+
+    aside.active {
+      display: block;
+    }
+
+    .dropdown-content {
+      margin-top: 10px;
+    }
+
+    .dropdown-content ul {
+      list-style: none;
+      padding-left: 15px;
+    }
+
+    .dropdown-content li {
+      margin: 5px 0;
+    }
+  
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #06374d, #041f2a);
+      color: white;
+      padding-top: 90px;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #042f43;
+      border-bottom: 1px solid #0a3d56;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a, .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu-avatar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .menu-icon {
+      width: 25px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    .avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #0e5f7a;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #064057;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #0a3d56;
+    }
+
+    .dropdown a:hover {
+      background: #07516c;
+    }
+
+    .search-bar {
+      padding: 10px 20px;
+      background: #063b51;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+    }
+
+    .avatars {
+      display: flex;
+      padding: 08px 20px;
+      gap: 30px;
+      overflow-x: clip;
+    }
+
+    .avatar {
+      text-align: center;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .card {
+      background: #064057;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .grid .card {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .post-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .user-info span.name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .user-info span.date {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .post-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .reaction-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .reaction-buttons button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .reaction-buttons button:hover {
+      background-color: #555;
+    }
+    .comment-box {
+      margin-top: 15px;
+    }
+    .comment-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+    }
+    
+    .tab-content {
+  padding: 20px;
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input, .filter-select, .filter-input {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.filter-button {
+  padding: 8px 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 12px;
+  width: 250px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.upload-button {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* Βασικά Στυλ Καρτέλας */
+.tab-content {
+  padding: 20px;
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Αναζήτηση */
+.search-bar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 80%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* Τίτλος */
+.centered-title {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 26px;
+  color: #333;
+}
+
+.centered-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Προϊόντα */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #369c8f;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.product-card .price {
+  font-weight: bold;
+  color: #e91e63;
+}
+
+.product-card .category {
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+  
+  
+  
+  </style>
+</head>
+
+<body>
+  <!-- HEADER ΔΕΝ ΑΛΛΑΖΕΙ - ΘΕΩΡΕΙΤΑΙ ΠΡΟΫΠΑΡΧΟΝ -->
+  <header>
+    <a href="Anthropos2.html" class="logo">Άνθρωπος 2.0</a>
+    <div class="nav-links">
+      <a href="NOUS.html"><img src="NOUSbutton.png" alt="Avatar" /></a>
+      <a href="ΨΥΧΑΓΩΓΙΑ&ΕΝΗΜΕΡΩΣΗ.html"><b>ΨΥΧΑΓΩΓΙΑ & ΕΝΗΜΕΡΩΣΗ</b></a>
+      <a href="ΑΓΟΡΑ.html"><b>ΑΓΟΡΑ</b></a>
+      <a href="ΧΡΗΜΑΤΙΣΤΗΡΙΟ.html"><b>ΧΡΗΜΑΤΙΣΤΗΡΙΟ</b></a>
+      <a href="EDUCATION.html"><b>Εκπαίδευση</b></a>
+      <a href="MASSAGE.html"><img src="ICON/2.png" alt="Avatar" /></a>
+      <a href="MAIL.html"><img src="ICON/1.png" alt="Avatar" /></a>
+
+    </div>
+
+    <div class="menu-avatar">
+      <div class="menu-icon" onclick="toggleDropdown()">
+        <div></div><div></div><div></div>
+      </div>
+      <div class="avatar">
+        <a href="PROFIL.html"><img src="85.jpg" alt="Avatar"></a>
+      </div>
+    </div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="INFO.html">Πληροφορίες</a>
+      <a href="SETTINGS.html">Ρυθμίσεις</a>
+      <a href="ACOUNT.html">Λογαριασμός</a>
+      <a href="NOUS.html">Νοῦς</a>
+      <a href="ABOTUS.html">About us</a>
+      <a href="KIDS.html"><b>Kids Mode</b></a>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-button active" data-tab="home">🏠 Αρχική</button>
+    <button class="tab-button" data-tab="agora">🌐 Αγορά</button>
+    <button class="tab-button" data-tab="agora2">🧠 Αγορά 2.0</button>
+    <button class="tab-button" data-tab="cars">🚗 Αυτοκίνητα</button>
+    <button class="tab-button" data-tab="real">🏡 Μεσιτικά</button>
+    <button class="tab-button" data-tab="travel">✈️ Ταξίδι & Αναψυχή</button>
+    <button class="tab-button" data-tab="fav">❤️ Οι αγαπημένες μου</button>
+    <button class="tab-button" data-tab="upload">⬆️ Ανεβάστε προϊόν</button>
+    <button class="tab-button" data-tab="categories" onclick="toggleAside()">📁 Κατηγορίες</button>
+  </div>
+
+  <!-- ASIDE -->
+  <aside id="categoryAside">
+    <h3>Υποκατηγορίες</h3>
+    <div class="dropdown-content">
+      <ul>
+        <li>Ηλεκτρονικά</li>
+        <li>Ανταλλακτικά αυτοκινήτων</li>
+        <li>Αποθηκευτικοί χώροι</li>
+        <li>Αρώματα & Καλλυντικά</li>
+        <li>Ασφάλειες</li>
+        <li>Αυτοκίνητα</li>
+        <li>Βιβλία</li>
+        <li>Βρεφικά είδη</li>
+        <li>Γεωργικά μηχανήματα</li>
+        <li>Γραφεία / Επαγγελματικοί χώροι</li>
+        <li>Γραφική ύλη & Είδη γραφείου</li>
+        <li>Γυαλιά ηλίου & Οράσεως</li>
+        <li>Δώρα & Χειροτεχνίες</li>
+        <li>Διακοσμητικά</li>
+        <li>Διατροφή & Υγεία</li>
+        <li>Δομικά υλικά</li>
+        <li>Είδη camping</li>
+        <li>Είδη κυνηγιού</li>
+        <li>Είδη κατοικίδιων</li>
+        <li>Είδη κουζίνας</li>
+        <li>Είδη μουσικής & όργανα</li>
+        <li>Είδη πάρτυ & Εκδηλώσεων</li>
+        <li>Είδη περιποίησης</li>
+        <li>Είδη ταξιδίου</li>
+        <li>Είδη τεχνολογίας</li>
+        <li>Ελαστικά & Ζάντες</li>
+        <li>Ενοικιαζόμενα δωμάτια</li>
+        <li>Εξοπλισμός καταστημάτων</li>
+        <li>Επαγγελματικός εξοπλισμός</li>
+        <li>Εργαλεία</li>
+        <li>Εσωτερική διακόσμηση</li>
+        <li>Ζώα</li>
+        <li>Ηλεκτρικές συσκευές</li>
+        <li>Ηλεκτρονικά είδη</li>
+        <li>Ηχεία / Ηχοσυστήματα</li>
+        <li>Θέρμανση / Ψύξη</li>
+        <li>Ιατρικά είδη</li>
+        <li>Ιδιωτικά μαθήματα / υπηρεσίες</li>
+        <li>Ιχθυοκαλλιέργειες</li>
+        <li> Καθίσματα / Καναπέδες</li>
+        <li>Κάμερες & Drones</li>
+        <li>Κατασκηνωτικός εξοπλισμός</li>
+        <li>Κινητά τηλέφωνα</li>
+        <li>Κοσμήματα</li>
+        <li>Κουφώματα / Πόρτες / Παράθυρα</li>
+        <li>Λευκά είδη</li>
+        <li>Μηχανές / Σκούτερ / Ποδήλατα</li>
+        <li>Μόδα / Ρούχα</li>
+        <li>Οικιακά είδη</li>
+        <li>Υπηρεσίες (μεταφορές, καθαρισμοί, delivery κ.ά.)</li>
+       
+      
+       
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΩΝ -->
+  <div id="home" class="tab-content active">
+    <h2>Αρχική Αγοράς</h2>
+    <div class="products">
+      <div class="product-card"><img src="Pictures/27.jfif" 
+        alt="Avatar"><b>Η Ιδεολογία της Αγοράς Στο Άνθρωπος 2.0
+
+        </b><p>Σε αυτό το Section Θα εμφανίζονται Τα Online καταστήματα των χρηστών
+          Η γενική ιδέα περιλαμβάνει ότι ο κάθε χρήστης θα μπορεί να δημιουργήσει Online καταστήματα τα οποί θα συνδέονται άμεσα με το Νους για να μπορεί να αποθηκέψει προϊόντα στην κατηγορία αγαπημένα μου να μπορεί να τα κρατά στο καλάθι του και να μπορεί να πραγματοποιεί τις αγορές του καλαθιού σε κομμάτια όταν, όποτε και αν θέλει.
+          Αυτό προσφέρει την δυνατότητα στους χρήστες να μην αποθηκεύουν καλάθια σε διάφορες πλατφόρμες, και να έχουν ένα γενικό οικονομικό σύνολο των επιθυμητών αγορών τους.
+          </p></div>
+      <div class="product-card"><img src="Pictures/69.jpg" 
+        alt="Avatar"><b>Καλώς ήρθατε στην Αγοράς του Άνθρωπος 2.0</b><p>Περιηγηθείτε στην Αγοράς του Άνθρωπος 2.0 για να γνωρίσετε την γενικότερη ιδέα μιας ασφαλής αγοράς όπου θα καλύπτει όλες τις βασικές και μη ανάγκες ενός ανθρώπου βασισμένη στην ιδέα της ασφαλούς αγοράς μέσω μεταφοράς των χρημάτων από χρήστη σε χρήστη μέσω πλατφόρμας που θα επιτρέπει στου χρήστες να στείλουν και να λάβουν χρήματα μέσω Internet μεταξύ τους
+        </p></div>
+    </div>
+  
+  </div>
+
+ 
+   <!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΑΓΟΡΑ -->
+<div id="agora" class="tab-content">
+  <h2>Ιδιωτικές Αγγελίες Πώλησης</h2>
+
+  <!-- Search & Filters -->
+  <div id="agora" class="search-filters">
+    <input type="text" placeholder="Αναζήτηση προϊόντος..." class="search-input" />
+
+    <div id="agora" class="tab-content active">
+  <div class="search-bar">
+    <input type="text" placeholder="Αναζήτηση προϊόντων...">
+  </div>
+
+  
+</div>
+
+    <select class="filter-select">
+      <option value="">Κατηγορία</option>
+      <option value="furniture">Έπιπλα</option>
+      <option value="electronics">Ηλεκτρονικά</option>
+      <option value="clothing">Ρούχα</option>
+      <option value="books">Βιβλία</option>
+      <option value="other">Άλλο</option>
+    </select>
+
+    <select class="filter-select">
+      <option value="">Περιοχή</option>
+      <option value="nicosia">Λευκωσία</option>
+      <option value="limassol">Λεμεσός</option>
+      <option value="larnaca">Λάρνακα</option>
+      <option value="paphos">Πάφος</option>
+    </select>
+
+    <input type="number" placeholder="Ελάχιστη τιμή" class="filter-input" />
+    <input type="number" placeholder="Μέγιστη τιμή" class="filter-input" />
+
+    <button class="filter-button">Φίλτρο</button>
+  </div>
+
+  <!-- Αγγελίες προϊόντων -->
+  <div class="products">
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/4.jfif" alt="Προϊόν 1" class="product-image" />
+      <h3>PlayStation 5</h3>
+      <p>Καλή κατάσταση, ελάχιστα χρησιμοποιημένο. 1T memory....</p>
+      <p><strong>Τιμή:</strong> €500</p>
+      <p><strong>Περιοχή:</strong> New York, USA</p>
+      <p><small>Αναρτήθηκε: 21/04/2025</small></p>
+    </div>
+
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/3.jfif" alt="Προϊόν 2" class="product-image" />
+      <h3>Sofa</h3>
+      <p>Χωρίς φθορές, διαθέσιμο άμεσα. 250cm x 200cm</p>
+      <p><strong>Τιμή:</strong> €240</p>
+      <p><strong>Περιοχή:</strong> Tokyo, Japan</p>
+      <p><small>Αναρτήθηκε: 20/04/2025</small></p>
+    </div>
+  
+  <div class="product-card">
+    <img src="Pictures/PRODUCTS/2.jfif" alt="Προϊόν 2" class="product-image" />
+    <h3>Τσάντα</h3>
+    <p>Ελάχιστες φθορές,</p>
+    <p><strong>Τιμή:</strong> €20</p>
+    <p><strong>Περιοχή:</strong> Athens, Greece</p>
+    <p><small>Αναρτήθηκε: 20/04/2025</small></p>
+  </div>
+  <div class="product-card">
+    <img src="Pictures/PRODUCTS/1.jfif" alt="Προϊόν 2" class="product-image" />
+    <h3>I-Pads</h3>
+    <p>Excelled Condition for Android and IOS</p>
+    <p><strong>Τιμή:</strong> €80</p>
+    <p><strong>Περιοχή:</strong> London, England</p>
+    <p><small>Αναρτήθηκε: 20/04/2025</small></p>
+  </div>
+</div>
+
+  </div>
+</div>
+
+
+<!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΑΓΟΡΑ2 -->
+
+<div class="tab-content" id="agora2">
+  <!-- Αναζήτηση -->
+  <div class="search-bar">
+    <input type="text" placeholder="Αναζήτηση προϊόντων στην Αγορά 2.0..." />
+  </div>
+
+  <!-- Τίτλος -->
+  <h2 class="centered-title">Αγορά 2.0</h2>
+  <p class="centered-subtitle">Ανακάλυψε προϊόντα από επιχειρήσεις και ιδιώτες.Βρείτε ότι χρειάζεστε στην Παγκόσμια Διαδικτυακή Πλατφόρμα Αγορών και Πωλήσεων AGORA2.0 του Anthropos2.0</p>
+
+  <!-- Πλέγμα Προϊόντων -->
+  <section class="product-grid">
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/5.jfif" alt="Laptop" />
+      <h3>Ultra Laptop Pro</h3>
+      <p class="price">€999.00</p>
+      <span class="category">Ηλεκτρονικά</span>
+    </div>
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/6.jfif" alt="Camera" />
+      <h3>4K Action Camera</h3>
+      <p class="price">€129.99</p>
+      <span class="category">Φωτογραφία</span>
+    </div>
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/7.jfif" alt="Sneakers" />
+      <h3>Running Sneakers</h3>
+      <p class="price">€89.00</p>
+      <span class="category">Μόδα</span>
+    </div>
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/8.jfif" alt="Smartwatch" />
+      <h3>Smartwatch X</h3>
+      <p class="price">€149.00</p>
+      <span class="category">Gadgets</span>
+    </div>
+  </section>
+</div>
+
+ 
+ <!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΑΥΤΟΚΙΝΗΤΑ -->
+ 
+    <div id="cars" class="tab-content">
+      <h2 class="centered-title">Αυτοκίνητα</h2>
+      <p class="centered-subtitle">Αναζήτησε, φίλτραρε και βρες το ιδανικό αυτοκίνητο για σένα</p>
+    
+      <!-- Search & Filters -->
+      <div class="search-filters">
+        <input type="text" placeholder="Μοντέλο / Λέξη-κλειδί..." class="search-input" />
+    
+        <select class="filter-select">
+          <option value="">Μάρκα</option>
+          <option value="toyota">Toyota</option>
+          <option value="bmw">BMW</option>
+          <option value="ford">Ford</option>
+          <option value="audi">Audi</option>
+        </select>
+    
+        <select class="filter-select">
+          <option value="">Καύσιμο</option>
+          <option value="petrol">Βενζίνη</option>
+          <option value="diesel">Πετρέλαιο</option>
+          <option value="electric">Ηλεκτρικό</option>
+        </select>
+    
+        <input type="number" placeholder="Έτος από" class="filter-input" />
+        <input type="number" placeholder="Έτος έως" class="filter-input" />
+        <input type="number" placeholder="Ελάχιστη Τιμή" class="filter-input" />
+        <input type="number" placeholder="Μέγιστη Τιμή" class="filter-input" />
+    
+        <button class="filter-button">Φίλτρο</button>
+      </div>
+    
+      <!-- Αυτοκίνητα -->
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="Pictures/PRODUCTS/FIAT.jfif" alt="Car">
+          <h3>Fiat Panda 2015</h3>
+          <p class="price">€4.000</p>
+          <span class="category">Βενζίνη - 120.000χλμ</span>
+        </div>
+    
+        <div class="product-card">
+          <img src="Pictures/PRODUCTS/MERCEDES.jfif" alt="Car">
+          <h3>Mercedes A-Class 2018</h3>
+          <p class="price">€12.000</p>
+          <span class="category">Πετρέλαιο - 75.000χλμ</span>
+        </div>
+    
+        <div class="product-card">
+          <img src="Pictures/PRODUCTS/TESLA.jfif" alt="Car">
+          <h3>Tesla Model 3</h3>
+          <p class="price">€29.900</p>
+          <span class="category">Ηλεκτρικό - 30.000χλμ</span>
+        </div>
+      </div>
+    </div>
+ <!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΜΕΣΗΤΙΚΑ -->
+ <div id="real" class="tab-content">
+  <h2 class="centered-title">Μεσιτικά</h2>
+  <p class="centered-subtitle">Αναζητήστε ακίνητα για αγορά ή ενοικίαση Παγκόσμια</p>
+
+  <!-- Search & Filters -->
+  <div class="search-filters">
+    <input type="text" placeholder="Τοποθεσία / Λέξη-κλειδί..." class="search-input" />
+
+    <select class="filter-select">
+      <option value="">Τύπος</option>
+      <option value="apartment">Διαμέρισμα</option>
+      <option value="house">Οικία</option>
+      <option value="studio">Στούντιο</option>
+      <option value="office">Επαγγελματικός Χώρος</option>
+    </select>
+
+    <select class="filter-select">
+      <option value="">Περιοχή</option>
+      <option value="nicosia">Λευκωσία</option>
+      <option value="limassol">Λεμεσός</option>
+      <option value="larnaca">Λάρνακα</option>
+      <option value="paphos">Πάφος</option>
+    </select>
+
+    <input type="number" placeholder="Ελάχιστη Τιμή" class="filter-input" />
+    <input type="number" placeholder="Μέγιστη Τιμή" class="filter-input" />
+
+    <button class="filter-button">Φίλτρο</button>
+  </div>
+
+  <!-- Κάρτες Ακινήτων -->
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/9.jfif" alt="Apartment">
+      <h3>2 Rooms Appartment, California</h3>
+      <p class="price">€650 / μήνα</p>
+      <span class="category">90τ.μ. - 2ος Όροφος</span>
+    </div>
+
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/10.jfif" alt="House">
+      <h3>Μονοκατοικία, France</h3>
+      <p class="price">€185.000</p>
+      <span class="category">120τ.μ. - 3 Υπν.</span>
+    </div>
+
+    <div class="product-card">
+      <img src="Pictures/PRODUCTS/11.jfif" alt="Studio">
+      <h3>Studio, Cyprus</h3>
+      <p class="price">€400 / μήνα</p>
+      <span class="category">35τ.μ. - Κέντρο</span>
+    </div>
+  </div>
+
+  <!-- Ενσωματωμένος Live Χάρτης -->
+  <h3 style="margin-top: 40px;">Δείτε τον χάρτη σε πραγματικό χρόνο</h3>
+  <div style="width: 100%; height: 400px; margin-top: 10px; border-radius: 10px; overflow: hidden;">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.780702490976!2d33.36529101542237!3d35.18556636696139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfc9393b70a3db%3A0xa930e88e52b1f569!2sNicosia!5e0!3m2!1sen!2scy!4v1684400000000!5m2!1sen!2scy"
+      width="100%"
+      height="100%"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+ <!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΤΑΞΙΔΙ -->
+  <div id="travel" class="tab-content">
+    <div class="search-bar">
+      <input type="text" placeholder="Αναζήτησε ταξίδι, υπηρεσία ή προσφορά...">
+    </div>
+  
+    <h2 style="text-align: center;">Οργάνωσε το Ταξίδι σου</h2>
+    <p style="text-align: center; color: #ccc; margin-bottom: 30px;">
+      Εδώ θα βρεις όλες τις υπηρεσίες για το ταξίδι σου, σε μία σελίδα.
+    </p>
+    <body>
+      <h1> Ημερομηνία </h1>
+      <form action="/sendData" method="GET">
+        <label for="txtDate">Ημερομηνία:</label>
+        <input type="date" id="txtDate" name="date" min="2021-01-01" value="2025-4-30" required>
+         (*)
+        <br>
+        <label for="txtDate">Ημερομηνία Επιστροφής:</label>
+        <input type="date" id="txtDate" name="date" min="2021-01-01" value="2025-4-22" required>
+         (*)
+
+        <br>
+        <input type="submit" value="Αναζήτηση">
+        <input type="reset" value="Καθαρισμός">
+    
+      </form>
+    
+    </body>
+    <div class="products">
+      <!-- Πτήσεις -->
+      <div class="product-card">
+        <h3>Αεροπορικά Εισιτήρια</h3>
+        <input type="text" placeholder="Από" class="filter-input">
+        <input type="text" placeholder="Προς" class="filter-input">
+        <input type="date" class="filter-input">
+        <button class="filter-button">Αναζήτηση Πτήσεων</button>
+      </div>
+  
+      <!-- Μέσα Μεταφοράς -->
+      <div class="product-card">
+        <h3>Μέσα Μεταφοράς</h3>
+        <select class="filter-select">
+          <option>Τρένο</option>
+          <option>Λεωφορείο</option>
+          <option>Μετρό/Τραμ</option>
+        </select>
+        <input type="text" placeholder="Από" class="filter-input">
+        <input type="text" placeholder="Προς" class="filter-input">
+        <input type="date" class="filter-input">
+        <button class="filter-button">Δείτε Δρομολόγια</button>
+      </div>
+  
+      <!-- Ενοικίαση Αυτοκινήτου -->
+      <div class="product-card">
+        <h3>Ενοικίαση Αυτοκινήτου</h3>
+        <input type="text" placeholder="Τοποθεσία παραλαβής" class="filter-input">
+        <input type="date" class="filter-input" placeholder="Από">
+        <input type="date" class="filter-input" placeholder="Έως">
+        <button class="filter-button">Αναζήτηση Οχημάτων</button>
+      </div>
+  
+      <!-- Διαμονή -->
+      <div class="product-card">
+        <h3>Εύρεση Διαμονής</h3>
+        <input type="text" placeholder="Πόλη ή προορισμός" class="filter-input">
+        <input type="date" class="filter-input">
+        <input type="number" placeholder="Άτομα" class="filter-input">
+        <button class="filter-button">Βρες Διαμονή</button>
+      </div>
+  
+      <!-- Παραλαβή / Παράδοση -->
+      <div class="product-card">
+        <h3>Παραλαβή από Αεροδρόμιο</h3>
+        <input type="text" placeholder="Αεροδρόμιο" class="filter-input">
+        <input type="text" placeholder="Ξενοδοχείο ή Διεύθυνση" class="filter-input">
+        <button class="filter-button">Κράτηση Μεταφοράς</button>
+      </div>
+  
+      <!-- Ασφάλεια -->
+      <div class="product-card">
+        <h3>Ασφάλεια Ταξιδιού</h3>
+        <select class="filter-select">
+          <option>Βασικό Πακέτο</option>
+          <option>Premium Πακέτο</option>
+          <option>Οικογενειακό Πακέτο</option>
+        </select>
+        <button class="filter-button">Επιλογή Ασφάλειας</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΑΓΑΠΗΜΕΝΑ -->
+  <div id="fav" class="tab-content">
+    <h2>Αγαπημένα</h2>
+    <p>Τα αποθηκευμένα προϊόντα σας εμφανίζονται εδώ.Εδώ θα βρίσκεται και το καλάθι που θα είναι και άμεσα συνδεδεμένο με το Νους.</p>
+    <img src="Pictures/70.jfif" alt="Apartment">
+  </div>
+<!-- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΡΤΕΛΑΣ ΠΡΟΙΟΝΤΑ ΜΟΥ -->
+  <div id="upload" class="tab-content">
+      <!-- Κουμπί Ανέβασμα -->
+  <div class="upload-section">
+    <button onclick="switchTab('upload')" class="upload-button">+ Ανέβασε το δικό σου προϊόν</button>
+  </div>
+</div>
+
+    <h2>Τα Προϊόντα μου</h2>
+    <p>Εδώ μπορείτε να προσθέσετε τη δική σας αγγελία. Η ιδεολογία του Anthropos2.0 θέλει να μας δώσει σε αυτό το Section τις εξής δυνατότητες:
+      -Ο κάθε χρήστης θα έχει την δυνατότητα της δικής του Online σελίδας που θα συνδέεται άμεσα με τα αγαπημένα του Anthropos2.0
+      -Θα δίνεται η δυνατότητα στους χρήστες να ανεβάζουν προϊόντα σε μια απλή πλατφόρμα για τοπικές αγορές προϊόντων από ιδιώτες.
+      -Οι χρήστες θα έχουν πρόσβαση στην Υπέρ-Πλατφόρμα Αγορών και Πωλήσεων προϊόντων Παγκόσμια το AGORA2.0</p>
+    <img src="Pictures/70.jfif" alt="Apartment">
+  </div>
+  
+
+  <!-- ΣΚΡΙΠΤΑ -->
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+    const aside = document.getElementById('categoryAside');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        contents.forEach(c => c.classList.remove('active'));
+        const currentTab = document.getElementById(tab);
+        if (currentTab) currentTab.classList.add('active');
+
+        if (tab !== 'categories') aside.classList.remove('active');
+      });
+    });
+
+    function toggleAside() {
+      aside.classList.toggle('active');
+    }
+
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    window.addEventListener("scroll", () => {
+      const menu = document.getElementById("dropdownMenu");
+      if (menu) menu.style.display = "none";
+    });
+  </script>
+</body>
+</html>
