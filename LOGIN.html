@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Χρηματιστήριο - Άνθρωπος 2.0</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      padding: 1rem;
+      text-align: center;
+      background-color: #1a1a1a;
+      font-size: 1.rem;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    .favorites {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 1rem;
+      background-color: #141414;
+      border-bottom: 1px solid #333;
+    }
+
+    .favorite-avatar {
+      width: 60px;
+      height: 60px;
+      background-color: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .panel {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 1rem;
+      flex: 1;
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+    }
+
+    .stock, .crypto {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+
+    .stock:last-child, .crypto:last-child {
+      border-bottom: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #06374d, #041f2a);
+      color: white;
+      padding-top: 90px;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #042f43;
+      border-bottom: 1px solid #0a3d56;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a, .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu-avatar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .menu-icon {
+      width: 25px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    .avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #0e5f7a;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #064057;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #0a3d56;
+    }
+
+    .dropdown a:hover {
+      background: #07516c;
+    }
+
+    .search-bar {
+      padding: 10px 20px;
+      background: #063b5100;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+    }
+
+    .avatars {
+      display: flex;
+      padding: 08px 20px;
+      gap: 30px;
+      overflow-x: clip;
+    }
+
+    .avatar {
+      text-align: center;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .card {
+      background: #064057;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .grid .card {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .post-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .user-info span.name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .user-info span.date {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .post-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .reaction-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .reaction-buttons button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .reaction-buttons button:hover {
+      background-color: #555;
+    }
+    .comment-box {
+      margin-top: 15px;
+    }
+    .comment-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+    }
+ 
+  body, html {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+  }
+
+  main {
+    height: 100vh;
+    background: url('PICTURES/77.jfif ') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: brightness(1.1);
+    text-align: center;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px #00f0ff;
+  }
+
+  p {
+    max-width: 700px;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #004d66;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0 0 15px #00e0ff;
+  }
+
+  .search-box input {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    background: transparent;
+    color: white;
+    font-size: 1em;
+  }
+
+  .search-box button {
+    background: #00e0ff;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .search-box button:hover {
+    background: #00b5cc;
+  }
+
+  .response {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #00e0ff;
+    max-width: 600px;
+  }
+  </style>
+
+
+<header>
+ <div></div> <a href="#" class="logo">ΑΝΘΡΩΠΟΣ 2.0</a>
+
+  <div class="menu-icon" >
+<a href="#"><img src="NOUSbutton.png" alt="Avatar" /></a>
+</div><div></div>
+</header>
+
+
+
+<body>
+  <main>
+    <h1 >Άνθρωπος 2.0</h1>
+    <p>Welcome</p>
+
+    <body>
+      <h1> Login </h1>
+      <form action="/sendData" method="POST">
+        <label for="txtUsername">Username:</label>
+        <input type="text" id="txtUsername" name="username" maxlength="30" placeholder="Enter your Username or E-mail..." autocomplete="on" required>
+        <br>
+        <label for="txtPassword">Password: </label>
+        <input type="password" id="txtPassword" name="password" maxlength="30" placeholder="Enter your Password..." autocomplete="on" pattern="[0-9a-zA-Z]{4,10}" required>
+        <br>
+        <input type="submit" value="Sign In">
+        <input type="reset" value="Reset">
+        <button onclick="switchTab('upload')" class="upload-button">Sign Up</button>
+      </form>
+    
+    </body>
+</body>
+
+
+
+
+
+
+<footer>
+  &copy; 2025 Άνθρωπος 2.0 — Δημιουργήθηκε με όραμα από τον Χρίστο| Όλοι οι χρήστες είναι σημαντικοί.
+</footer>
+
+</html>
