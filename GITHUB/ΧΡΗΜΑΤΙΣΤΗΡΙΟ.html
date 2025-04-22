@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Χρηματιστήριο - Άνθρωπος 2.0</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      padding: 1rem;
+      text-align: center;
+      background-color: #1a1a1a;
+      font-size: 1.rem;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    .favorites {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 1rem;
+      background-color: #141414;
+      border-bottom: 1px solid #333;
+    }
+
+    .favorite-avatar {
+      width: 60px;
+      height: 60px;
+      background-color: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .panel {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      padding: 1rem;
+      flex: 1;
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+    }
+
+    .stock, .crypto {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+
+    .stock:last-child, .crypto:last-child {
+      border-bottom: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #06374d, #041f2a);
+      color: white;
+      padding-top: 90px;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #042f43;
+      border-bottom: 1px solid #0a3d56;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a, .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu-avatar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .menu-icon {
+      width: 25px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-icon div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    .avatar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #0e5f7a;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background: #064057;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #0a3d56;
+    }
+
+    .dropdown a:hover {
+      background: #07516c;
+    }
+
+    .search-bar {
+      padding: 10px 20px;
+      background: #063b5100;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+    }
+
+    .avatars {
+      display: flex;
+      padding: 08px 20px;
+      gap: 30px;
+      overflow-x: clip;
+    }
+
+    .avatar {
+      text-align: center;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    .card {
+      background: #064057;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .grid .card {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .post-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .user-info span.name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .user-info span.date {
+      font-size: 12px;
+      color: #aaa;
+    }
+    .post-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .reaction-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .reaction-buttons button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .reaction-buttons button:hover {
+      background-color: #555;
+    }
+    .comment-box {
+      margin-top: 15px;
+    }
+    .comment-box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<header> <a href="#" class="logo">Άνθρωπος 2.0</a>
+  <div class="menu-avatar">
+    <div class="menu-icon">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="avatar">
+      <img src="pictures/AVATAR/2.png" alt="Avatar" />
+    </div>
+  </div>
+</header>
+
+
+
+</body>
+</html>
+
+<header>
+  <a href="Anthropos2.html" class="logo">ΑΝΘΡΩΠΟΣ 2.0</a>
+
+  <div class="nav-links">
+    <div class="nav-links">
+      <a href="NOUS.html"><img src="NOUSbutton.png" alt="Avatar" /></a>
+      <a href="ΨΥΧΑΓΩΓΙΑ&ΕΝΗΜΕΡΩΣΗ.html"><b>ΨΥΧΑΓΩΓΙΑ & ΕΝΗΜΕΡΩΣΗ</b></a>
+      <a href="ΑΓΟΡΑ.html"><b>ΑΓΟΡΑ</b></a>
+      <a href="ΧΡΗΜΑΤΙΣΤΗΡΙΟ.html"><b>ΧΡΗΜΑΤΙΣΤΗΡΙΟ</b></a>
+      <a href="EDUCATION.html"><b>Εκπαίδευση</b></a>
+      <a href="MASSAGE.html"><img src="ICON/2.png" alt="Avatar" /></a>
+      <a href="MAIL.html"><img src="ICON/1.png" alt="Avatar" /></a>
+
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Αναζήτησμ με τον Νοῦς..." />
+    </div>
+  </div>
+
+  <div class="menu-avatar">
+    <div class="menu-icon" onclick="toggleDropdown()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="avatar">
+     <a href="PROFIL.html"><img src="85.jpg" 
+      alt="Avatar"></a>
+    </div>
+  </div>
+  
+
+  <div class="dropdown" id="dropdownMenu">
+    <a href="INFO.html">Πληροφορίες</a>
+    <a href="SETTINGS.html">Ρυθμίσεις</a>
+    <a href="ACOUNT.html">Λογαριασμός </a>
+    <a href="NOUS.html">Νοῦς </a>
+    <a href="ABOTUS.html">About us </a>
+    <a href="KIDS.html"><b>Kids Mode</b> </a>    </div>
+
+
+
+
+<script>
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  // Κλείσιμο dropdown όταν γίνεται scroll
+  window.addEventListener("scroll", () => {
+    const menu = document.getElementById("dropdownMenu");
+    if (menu) menu.style.display = "none";
+  });
+</script>
+<script>
+  function toggleDropdown() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  }
+
+  window.addEventListener('click', function(e) {
+    const menu = document.getElementById('dropdownMenu');
+    if (!e.target.closest('.menu-avatar')) {
+      menu.style.display = 'none';
+    }
+  });
+</script>
+
+</body></header>
+
+  <h1>Χρηματιστήριο</h1>
+
+  <div class="avatars">
+    <div class="avatar">
+      <a href="UPLOADSHORTORREEL.html"><img src="Pictures/AVATAR/15.jpg" 
+      alt="Avatar"><div></div></a>
+     </div>
+   
+   <div class="avatar">
+      <a href=""><img src="Pictures/AVATAR/16.jpg" 
+      alt="Avatar"><div>-0,009</div></a>
+     </div>
+     <div class="avatar">
+      <a href=""><img src="Pictures/AVATAR/17.jpg" 
+      alt="Avatar"><div>+0,0028</div></a>
+     </div>
+     <div class="avatar">
+      <a href=""><img src="Pictures/AVATAR/18.png" 
+      alt="Avatar"><div>-0,320</div></a>
+     </div>
+     <div class="avatar">
+      <a href=""><img src="Pictures/AVATAR/19.jpg" 
+      alt="Avatar"><div>+0,002</div></a>
+     </div>
+     <div class="avatar">
+      <a href=""><img src="Pictures/AVATAR/20.png" 
+      alt="Avatar"><div>+3%</div></a>
+     </div>
+     <div class="avatar">
+      <a href=""><img src="Pictures/AVATAR/8.jfif" 
+      alt="Avatar"><div>Add...</div></a>
+     </div>
+  </div>
+
+  <div class="content">
+    <!-- Top Stocks -->
+    <div class="panel" id="stocks">
+      <h3>Top Μετοχές</h3>
+      <img src="Pictures/58.jfif" alt="Shorts">
+      <!-- JS will insert here -->
+    </div>
+
+    <!-- Top Cryptos -->
+    <div class="panel" id="cryptos">
+      <h3>Top Κρυπτονομίσματα</h3>
+      <img src="Pictures/34.jfif" alt="Shorts">
+      <!-- JS will insert here -->
+    </div>
+  </div>
+
+
+
+
+  <div class="post-card">
+    <div class="post-header">
+      
+      <div class="user-info">
+        <span class="name">Άνθρωπος 2,0</span>
+        <span class="date">19 Απριλίου 2025</span>
+      </div>
+    </div>
+
+    <p>Σε αυτό το Section θα ανεβαίνουν ειδήσεις που θα αφορούν το Χρηματιστήριο τα Κρυπτονομίσματα και γενικά την Διεθνή Αγορά.!</p>
+
+    <img class="post-image" src="Pictures/42.jfif" alt="post" /></div>
+
+    <div class="post-card">
+      <div class="post-header">
+        
+        <div class="user-info">
+          <span class="name">Άνθρωπος 2,0</span>
+          <span class="date">19 Απριλίου 2025</span>
+        </div>
+      </div>
+  
+      <p><a href="ARTHROparadigma.html">Η αύξηση της οικονομίας στα κρυπτονομίσματα μπορεί να παίξει άμεσο ρόλο στην εξέλιξη της τεχνολογίας.  Διαβάστε το άρθρο εδώ:</p>>
+  
+      <img class="post-image" src="Pictures/50.jfif" alt="post" /></a></div>
+
+      <div class="post-card">
+        <div class="post-header">
+          
+          <div class="user-info">
+            <span class="name">Άνθρωπος 2,0</span>
+            <span class="date">19 Απριλίου 2025</span>
+          </div>
+        </div>
+    
+        <p>Στο Άνθρωπος 2.0 η βασική ιδέα περιέχει ένα ασφαλές σύστημα πληρωμών,  το οποί θα ελέγχεται από την τεχνίτη νοημοσύνη για αυξημένη προστασία στις αγορές και μεταφορές χρημάτων των χρηστών εντός και εκτός της πλατφόρμας, όπως επίσης το όραμα περιέχει να λειτουργεί ως μια ολοκληρωμένη πλατφόρμα συναλλαγών όπου οι χρήστες θα μπορούν να πραγματοποιούν αγορές, πωλήσεις και ανταλλαγές κρυπτονομισμάτων με ασφάλεια.!</p>
+    
+        <img class="post-image" src="Pictures/55.jfif" alt="post" /></div>
+
+  <script>
+    // MOCK STOCK DATA
+    const stockData = [
+      { symbol: "AAPL", price: 189.43 },
+      { symbol: "TSLA", price: 171.21 },
+      { symbol: "GOOG", price: 132.77 },
+      { symbol: "AMZN", price: 109.32 },
+      { symbol: "MSFT", price: 312.99 },
+      { symbol: "META", price: 286.64 },
+      { symbol: "NVDA", price: 431.78 },
+      { symbol: "NFLX", price: 387.15 },
+      { symbol: "BABA", price: 86.73 },
+      { symbol: "INTC", price: 30.11 }
+    ];
+
+    const stocksDiv = document.getElementById("stocks");
+    stockData.forEach(s => {
+      const el = document.createElement("div");
+      el.className = "stock";
+      el.innerHTML = <span>${s.symbol}</span><span>$${s.price.toFixed(2)}</span>;
+      stocksDiv.appendChild(el);
+    });
+
+    // COINGECKO LIVE DATA
+    async function loadCrypto() {
+      const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false");
+      const data = await res.json();
+      const cryptosDiv = document.getElementById("cryptos");
+
+      data.forEach(c => {
+        const el = document.createElement("div");
+        el.className = "crypto";
+        el.innerHTML = <span>${c.symbol.toUpperCase()}</span><span>$${c.current_price.toFixed(2)}</span>;
+        cryptosDiv.appendChild(el);
+      });
+    }
+
+    loadCrypto();
+  </script>
+</body>
+
+<footer>
+  &copy; 2025 Άνθρωπος 2.0 — Δημιουργήθηκε με όραμα από τον Χρίστο| Όλοι οι χρήστες είναι σημαντικοί.
+</footer>
+
+</html>

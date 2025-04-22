@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Άνθρωπος 2.0</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #06374d, #041f2a);
+  color: white;
+  padding-top: 90px;
+}
+
+header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #042f43;
+  border-bottom: 1px solid #0a3d56;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+nav a, .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.menu-avatar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu-icon {
+  width: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-icon div {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #0e5f7a;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #064057;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.dropdown a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid #0a3d56;
+}
+
+.dropdown a:hover {
+  background: #07516c;
+}
+
+.search-bar {
+  padding: 10px 20px;
+  background: #063b5100;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.avatars {
+  display: flex;
+  padding: 08px 20px;
+  gap: 30px;
+  overflow-x: clip;
+}
+
+.avatar {
+  text-align: center;
+}
+
+section {
+  padding: 20px;
+}
+
+.card {
+  background: #064057;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.grid .card {
+  flex: 1;
+  min-width: 200px;
+}
+
+.post-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+.user-info span.name {
+  font-weight: bold;
+  font-size: 16px;
+}
+.user-info span.date {
+  font-size: 12px;
+  color: #aaa;
+}
+.post-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.reaction-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.reaction-buttons button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.reaction-buttons button:hover {
+  background-color: #555;
+}
+.comment-box {
+  margin-top: 15px;
+}
+.comment-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+}
+
+.cover {
+  background-image: url('cover.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 270px;
+  position: relative;
+}
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid white;
+}
+.profile-name {
+  font-size: 24px;
+  margin-top: 10px;
+}
+.bio {
+  font-size: 14px;
+  color: #cccccc;
+}
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+.stat {
+  text-align: center;
+}
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.tab-button {
+  background-color: #155b7e;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background-color: #0e5f7a; /* Ένδειξη ενεργού κουμπιού */
+}
+
+.tab-content {
+  display: none; /* Αρχικά κρύβουμε όλο το περιεχόμενο */
+  padding: 20px;
+  background-color: #074863; /* Ένα διακριτικό φόντο για το περιεχόμενο */
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.tab-content.active {
+  display: block; /* Εμφανίζουμε το ενεργό περιεχόμενο */
+}
+  
+ 
+    
+
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      background: #1a1a1a;
+      border-bottom: 2px solid #333;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      background: #1a1a1a;
+      border: none;
+      color: #ccc;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    .tab-button:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    .tab-button.active {
+      background: #00aaff;
+      color: #fff;
+      font-weight: bold;
+    }
+
+  
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2, h3 {
+      color: #00aaff;
+    }
+
+    .scroll-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .scroll-btn {
+      background-color: #444;
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 10px 0;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    img, video {
+      flex: 0 0 auto;
+      border-radius: 8px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    section {
+      background-color: #222;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="Anthropos2.html" class="logo">Άνθρωπος 2.0</a>
+    <div class="nav-links">
+      <div class="nav-links">
+        <a href="NOUS.html"><img src="NOUSbutton.png" alt="Avatar" /></a>
+        <a href="ΨΥΧΑΓΩΓΙΑ&ΕΝΗΜΕΡΩΣΗ.html"><b>ΨΥΧΑΓΩΓΙΑ & ΕΝΗΜΕΡΩΣΗ</b></a>
+        <a href="ΑΓΟΡΑ.html"><b>ΑΓΟΡΑ</b></a>
+        <a href="ΧΡΗΜΑΤΙΣΤΗΡΙΟ.html"><b>ΧΡΗΜΑΤΙΣΤΗΡΙΟ</b></a>
+        <a href="EDUCATION.html"><b>Εκπαίδευση</b></a>
+        <a href="MASSAGE.html"><img src="ICON/2.png" alt="Avatar" /></a>
+        <a href="MAIL.html"><img src="ICON/1.png" alt="Avatar" /></a>
+    </div></div>
+      </div>
+  
+      <div class="search-bar">
+        <input type="text" placeholder="Αναζήτησμ με τον Νοῦς..." />
+      </div>
+    </div>
+    </nav>
+    <div class="menu-avatar">
+      <div class="menu-icon" onclick="toggleDropdown()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="avatar">
+        <a href="PROFIL.html"><img src="85.jpg" alt="Avatar"></a>
+      </div>
+    </div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="INFO.html">Πληροφορίες</a>
+      <a href="SETTINGS.html">Ρυθμίσεις</a>
+      <a href="ACOUNT.html">Λογαριασμός</a>
+      <a href="NOUS.html">Νοῦς</a>
+      <a href="ABOTUS.html">About us</a>
+      <a href="KIDS.html"><b>Kids Mode</b></a>
+
+     
+    </div>
+  </header>
+
+  
+
+  <main>
+    <div class="cover">
+      <div class="profile-info">
+        <img src="85.jpg" alt="Profile" class="profile-img" />
+        <div class="profile-text">
+          <div class="profile-name">Άνθρωπος 2.0</div>
+          <div class="bio">
+            Ο Άνθρωπος 2.0 Είναι η βάση της ιδέας μιας πλατφόρμας που θα ενώνει όλο τον πλανήτη και θα έχει όλες τις παροχές διαφόρων εφαρμογών που χρειάζεται ο άνθρωπος καθημερινά.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      
+      <div class="stat">
+        <strong>120</strong>
+        Ακόλουθοι
+      </div>
+      <div class="stat">
+        <strong>98</strong>
+        Ακολουθείς
+      </div>
+      <div class="stat">
+        <strong>64</strong>
+        Φίλοι
+      </div>
+    </div>
+
+    <div class="tabs-container">
+      <button class="tab-button active" onclick="openTab(event, 'POST')">Δημοσιεύσεις</button>
+      <button class="tab-button" onclick="openTab(event, 'MEDIA')">Φωτο & Βίντεο</button>
+      <button class="tab-button" onclick="openTab(event, 'COMUNITY')">Κοινότητα</button>
+      <button class="tab-button" onclick="openTab(event, 'BIO')">Βιογραφικό</button>
+    </div>
+
+    <div id="POST" class="tab-content active">
+      <section>
+        <h2>Οι Δημοσιεύσεις σου</h2>
+        <article class="post-card">
+          <div class="post-header">
+            <img class="avatar" src="85.jpg" alt="avatar" />
+            <div class="user-info">
+              <span class="name">Άνθρωπος 2,0</span>
+              <span class="date">19 Απριλίου 2025</span>
+            </div>
+          </div>
+          <p>Ανακαλύψτε διάφορα μέσα ψυχαγωγίας στην πλατφόρμα μας όπως τα Βίντεο, Ταινίες, Ροές Live, Παιχνίδια, επικοινωνήστε με φίλους ενημερωθείτε, βρείτε προϊόντα και υπηρεσίες που έχετε ανάγκη και αλλά πολλά που θα ανακαλύψετε στην πλατφόρμα μας.</p>
+          <img class="post-image" src="Pictures/g46.png" alt="post" />
+          <div class="reaction-buttons">
+            <button>Μου αρέσει</button>
+            <button>Αγάπη</button>
+            <button>Χαχα</button>
+            <button>Ουάου</button>
+            <button>Λύπη</button>
+            <button>Θυμός</button>
+            <button>Κοινοποίηση</button>
+          </div>
+          <div class="comment-box">
+            <input type="text" placeholder="Γράψε ένα σχόλιο..." />
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-header">
+            <img class="avatar" src="85.jpg" alt="avatar" />
+            <div class="user-info">
+              <span class="name">Άνθρωπος 2,0</span>
+              <span class="date">19 Απριλίου 2025</span>
+            </div>
+          </div>
+          <p>Καλώς ήρθατε στην πλατφόρμα Άνθρωπος 2.0!</p>
+          <img class="post-image" src="Pictures/4.png" alt="post" />
+          <div class="reaction-buttons">
+            <button>Μου αρέσει</button>
+            <button>Αγάπη</button>
+            <button>Χαχα</button>
+            <button>Ουάου</button>
+            <button>Λύπη</button>
+            <button>Θυμός</button>
+            <button>Κοινοποίηση</button>
+          </div>
+          <div class="comment-box">
+            <input type="text" placeholder="Γράψε ένα σχόλιο..." />
+          </div>
+        </article>
+        <article class="post-card">
+          <div class="post-header">
+            <img class="avatar" src="85.jpg" alt="avatar" />
+            <div class="user-info">
+              <span class="name">Άνθρωπος 2,0</span>
+              <span class="date">19 Απριλίου 2025</span>
+            </div>
+          </div>Pi
+          <p>Περιηγηθείτε στην πλατφόρμα μας για να γνωρίσετε το βαθύτερο νόημα της δημιουργίας της.</p>
+          <img class="post-image" src="Pictures/18.jfif" alt="post" />
+          <div class="reaction-buttons">
+            <button>Μου αρέσει</button>
+            <button>Αγάπη</button>
+            <button>Χαχα</button>
+            <button>Ουάου</button>
+            <button>Λύπη</button>
+            <button>Θυμός</button>
+            <button>Κοινοποίηση</button>
+          </div>
+          <div class="comment-box">
+            <input type="text" placeholder="Γράψε ένα σχόλιο..." />
+          </div>
+        </article>
+      </section>
+    </div>
+ <!-- ΦΩΤΟΓΡΑΦΙΕΣ ΚΑΙ ΒΙΝΤΕΟ -->
+    <div id="MEDIA" class="tab-content">
+      <div class="photo-video-wrapper">
+        <h2>Φωτογραφίες & Βίντεο</h2>
+      
+        <!-- ΦΩΤΟΓΡΑΦΙΕΣ -->
+        <section id="photos">
+          <h3>Φωτογραφίες</h3>
+          <div class="scroll-wrapper">
+            <button class="scroll-btn" onclick="scrollSection('photosScroll', -300)">‹</button>
+            <div class="scroll-container" id="photosScroll">
+              <img src="Pictures/21.jfif" alt="Φωτογραφία 1">
+              <img src="Pictures/24.jfif" alt="Φωτογραφία 2">
+              <img src="Pictures/25.jfif" alt="Φωτογραφία 3">
+              <img src="Pictures/31.jfif" alt="Φωτογραφία 1">
+              <img src="Pictures/32.jfif" alt="Φωτογραφία 2">
+              <img src="Pictures/34.jfif" alt="Φωτογραφία 3">
+              <img src="Pictures/40.jfif" alt="Φωτογραφία 1">
+              <img src="Pictures/42.jfif" alt="Φωτογραφία 2">
+              <img src="Pictures/44.jfif" alt="Φωτογραφία 3">
+              <img src="Pictures/59.jfif" alt="Φωτογραφία 1">
+              <img src="Pictures/68.jfif" alt="Φωτογραφία 2">
+              <img src="Pictures/41.jfif" alt="Φωτογραφία 3">
+              <!-- Πρόσθεσε όσες φωτογραφίες θέλεις -->
+            </div>
+            <button class="scroll-btn" onclick="scrollSection('photosScroll', 300)">›</button>
+          </div>
+        </section>
+      
+        <!-- ΒΙΝΤΕΟ -->
+        <section id="videos">
+          
+          <h3>Βίντεο</h3>
+          
+          <div class="scroll-wrapper">
+            <button class="scroll-btn" onclick="scrollSection('videosScroll', -300)">‹</button>
+            <div class="scroll-container" id="videosScroll">
+              
+              <video controls>
+                <source src="Videos/S1.mp4" type="video/mp4">
+                Το πρόγραμμα περιήγησής σας δεν υποστηρίζει την αναπαραγωγή βίντεο.
+              </video>
+              
+              <video controls>
+                <source src="Videos/S2.mp4" type="video/mp4">
+              </video>
+
+              <video controls>
+                <source src="Videos/S3.mp4" type="video/mp4">
+              </video>
+             
+              <video controls>
+                <source src="Videos/S4.mp4" type="video/mp4">
+              </video>
+
+              <video controls>
+                <source src="Videos/S5.mp4" type="video/mp4">
+              </video>
+             
+              <!-- Πρόσθεσε κι άλλα βίντεο αν θες -->
+            </div>
+            <button class="scroll-btn" onclick="scrollSection('videosScroll', 300)">›</button>
+          
+            <video controls>
+              <source src="Videos/S6.mp4" type="video/mp4">
+              Το πρόγραμμα περιήγησής σας δεν υποστηρίζει την αναπαραγωγή βίντεο.
+            </video>
+            
+            
+        </section>
+      </div>
+      
+      <script>
+        function scrollSection(id, offset) {
+          const container = document.getElementById(id);
+          container.scrollLeft += offset;
+        }
+      </script>
+
+        
+        
+      </section>
+    </div>
+ <!-- ΚΟΙΝΟΤΗΤΑ -->
+    <div id="COMUNITY" class="tab-content">
+      <section>
+        <h2>Κοινότητα</h2>
+        <p>Αλληλεπιδράσεις με φίλους, ακολούθους και σχόλια.</p>
+        <p>Εδώ θα μπορούσε να υπάρχει λίστα φίλων, ομάδων ή άλλων στοιχείων κοινότητας.</p>
+      </section>
+    </div>
+
+
+
+
+     <!-- ΒΙΟΓΡΑΦΙΚΟ -->
+    <div id="BIO" class="tab-content">
+      <section>
+        <h2>Πληροφορίες Χρήστη</h2>
+        <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; background-color: #f5f5f5; color: #333;">
+          <thead style="background-color: #064057; color: white;">
+            <tr>
+              <th>Κατηγορία</th>
+              <th>Πληροφορίες</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ονοματεπώνυμο</strong></td>
+              <td>Άνθρωπος2.0</td>
+            </tr>
+            <tr>
+              <td><strong>Ημερομηνία Γέννησης</strong></td>
+              <td>2 Απριλίου 1983</td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>comingsoon@example.com</td>
+            </tr>
+            <tr>
+              <td><strong>Τηλέφωνο</strong></td>
+              <td>Προαιρετικό</td>
+            </tr>
+            <tr>
+              <td><strong>Διεύθυνση</strong></td>
+              <td>Παγκοσμια πλατφόρμα</td>
+            </tr>
+            <tr>
+              <td><strong>Εκπαίδευση</strong></td>
+              <td>Προαιρετικό</td>
+            </tr>
+            <tr>
+              <td><strong>Προϋπηρεσία</strong></td>
+              <td>Προαιρετικό</td>
+            </tr>
+            <tr>
+              <td><strong>Τρέχουσα Εργασία</strong></td>
+              <td>Δημιουργία Νοῦς και Άνθρωπος2.0</td>
+            </tr>
+            <tr> 
+              <td><strong>Χόμπι</strong></td>
+              <td>Έρευνα για την σύνδεση της ανάπτυξης της τεχνολογίας σε συνδυασμό με τνα πράσινο υγειές πλανήτη για τις επόμενες γενιές μαζί με τα θεμέλια για την ιδέα ενός πολύ πλανητικού ανθρώπινου ον.</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </section>
+    </div>
+  </main>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    window.addEventListener("scroll", () => {
+      const menu = document.getElementById("dropdownMenu");
+      if (menu) menu.style.display = "none";
+    });
+
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+      }
+      tablinks = document.getElementsByClassName("tab-button");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      openTab(null, 'POST'); // Εμφάνιση του tab "Δημοσιεύσεις" κατά την φόρτωση
+    });
+  </script>
+
+
+
+
+
+</body>
+</html>
